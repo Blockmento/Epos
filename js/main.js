@@ -1,5 +1,6 @@
 console.log("Starte");
-const Edges = [[0,2/3],[1,1/3],[1,-1/3],[0,-2/3],[-1,-1/3],[1,1/3]];
+const Edges = [[0,2/3],[1,1/3],[1,-1/3],[0,-2/3],[-1,-1/3],[-1,1/3]];
+var debug = [];
 /* 
  0
 5/\1
@@ -23,9 +24,11 @@ function nearest_edges(point_a,point_b) { //Calculats the tow nearest edges of t
         if (distance < smalest_dist[0][0]) {
             smalest_dist [0] = [distance,i];
         }
-        else if (distance == smalest_dist[0][0]) {        //todo if to edges have the same distance, save them both
-            return;
+        else if (distance == smalest_dist[0][0]) {  
+            console.log("same_1");      //todo if to edges have the same distance, save them both
+            //return;
         }
+        debug.push([parseInt(point_a[0]) + edge[0],distance,i])
     }
     var edge_a = [0,0];
     edge_a[0] = parseInt(point_a[0]) + Edges[smalest_dist[0][1]] [0];
@@ -45,7 +48,7 @@ function nearest_edges(point_a,point_b) { //Calculats the tow nearest edges of t
             smalest_dist [1] = [distance,i];
         }
         else if (distance == smalest_dist[1][0]) {        //todo if to edges have the same distance, save them both
-            console.log("same");
+            console.log("same_2");
             //return;
         }
     }
@@ -53,7 +56,6 @@ function nearest_edges(point_a,point_b) { //Calculats the tow nearest edges of t
 }
 
 function line_of_sight() {
-    console.log("function");
     start = document.getElementById("start").value.split(" ");
     end = document.getElementById("end").value.split(" ");
     nearest_edges(start,end)

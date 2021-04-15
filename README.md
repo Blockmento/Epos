@@ -1,2 +1,2 @@
 # Epos
-A Projekt for a browsergame 
+A Projekt for a browsergame of a bordgame my friend and I have made.

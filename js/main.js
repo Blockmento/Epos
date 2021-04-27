@@ -11,11 +11,9 @@ var debug = [];
 
 function nearest_edges(point_a,point_b) { //Calculats the tow nearest edges of tow hexagones
     let smalest_dist = [[1000000,0],[1000000,0]];
+    let points = [];
     for (let i = 0; i < Edges.length; i++) {
-        //calculate the position of the curent edge
         let edge = Edges[i];
-        //edge[0] = parseInt(point_a[0]) + edge[0]; //this changes the Edges variable for some reason
-        //edge[1] = parseInt(point_a[1]) + edge[1];
 
         //calculate the distance between calculated edge and the center of point_b
         const distance = Math.sqrt(Math.pow(Math.abs((parseInt(point_a[0]) + edge[0])-point_b[0]),2) + Math.pow(Math.abs((parseInt(point_a[1]) + edge[1])-point_b[1]),2));
@@ -35,11 +33,9 @@ function nearest_edges(point_a,point_b) { //Calculats the tow nearest edges of t
     edge_a[1] = parseInt(point_a[1]) + Edges[smalest_dist[0][1]] [1];
 
     for (let i = 0; i < Edges.length; i++) {
-        //calculate the position of the curent edge
+
         const edge = Edges[i];
-        //edge[0] = parseInt(point_a[0]) + edge[0];
-        //edge[1] = parseInt(point_a[1]) + edge[1];
-        
+
         //calculate the distance between edge_a and edge
         const distance = Math.sqrt(Math.pow(Math.abs((parseInt(point_b[0]) + edge[0])-edge_a[0]),2) + Math.pow(Math.abs((parseInt(point_b[1]) + edge[1])-edge_a[1]),2));
 
@@ -52,11 +48,16 @@ function nearest_edges(point_a,point_b) { //Calculats the tow nearest edges of t
             //return;
         }
     }
+    //get the position of the edges
+    points.push([parseInt(point_a[0]) + Edges[smalest_dist[0][1]][0],parseInt(point_a[1]) + Edges[smalest_dist[0][1]][1]]);
+    points.push([parseInt(point_b[0]) + Edges[smalest_dist[1][1]][0],parseInt(point_b[1]) + Edges[smalest_dist[1][1]][1]]);
+    return points;
     console.log(smalest_dist);
 }
 
 function line_of_sight() {
-    start = document.getElementById("start").value.split(" ");
-    end = document.getElementById("end").value.split(" ");
-    nearest_edges(start,end)
+    let start = document.getElementById("start").value.split(" ");
+    let end = document.getElementById("end").value.split(" ");
+    let NE = nearest_edges(start,end)
+    console.log(NE);
 }

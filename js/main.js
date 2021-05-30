@@ -10,7 +10,7 @@ var debug = [];
  */
 
 function nearest_edges(point_a,point_b) { //Calculats the tow nearest edges of tow hexagones
-    let smalest_dist = [[1000000,0],[1000000,0]];
+    let smalest_dist = [[Infinity,0],[Infinity,0]];
     let points = [];
     for (let i = 0; i < Edges.length; i++) {
         let edge = Edges[i];
@@ -58,6 +58,24 @@ function nearest_edges(point_a,point_b) { //Calculats the tow nearest edges of t
 function line_of_sight() {
     let start = document.getElementById("start").value.split(" ");
     let end = document.getElementById("end").value.split(" ");
-    let NE = nearest_edges(start,end)
+    let NE = nearest_edges(start,end);
+
+    //calculate a linear funktion with the tow nearest edges
+    let m = (NE[1][1]-NE[0][1])/(NE[1][0]-NE[0][0])
+    let n = (NE[0][1])/(m*NE[0][0])
     console.log(NE);
+    console.log("m="+m+" n="+n);
+
+    if (Math.abs(m)==Infinity) {
+        //strait vertical line
+    }
+    else {
+        //get the smaler x
+        let sx = [parseInt(start[0]),parseInt(end[0])].sort();
+ 
+        for (let i = 0; i < (parseInt(start[0])-parseInt(end[0])); i++) {
+            //let f = m * () + n;
+            //console.log(NE[1][0]-NE[0][0]);
+        }
+    }
 }
